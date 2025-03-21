@@ -33,9 +33,9 @@ namespace ProjetoPGE.API.Controllers
         [ProducesResponseType(typeof(ISuccessStatus<List<ProcessoDTO>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(IInternalServerErrorStatus<List<ProcessoDTO>>), StatusCodes.Status500InternalServerError)]
         [Authorize(Policy = "ProcuradorOuAdmin")]
-        public async Task<IActionResult> GetProcessos()
+        public async Task<IActionResult> GetProcessos([FromQuery] String buscar)
         {
-            return await _service.GetProcessos();
+            return await _service.GetProcessos(buscar);
         }
 
         /// <summary>

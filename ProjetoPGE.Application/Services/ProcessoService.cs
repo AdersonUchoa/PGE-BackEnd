@@ -85,11 +85,11 @@ namespace ProjetoPGE.Application.Services
             }
         }
 
-        public async Task<ObjectResult> GetProcessos()
+        public async Task<ObjectResult> GetProcessos(String buscar)
         {
             try
             {
-                var processos = await _repository.GetProcessos();
+                var processos = await _repository.GetProcessos(buscar);
                 if (processos == null)
                 {
                     return new NotFoundStatus<List<ProcessoDTO>>(

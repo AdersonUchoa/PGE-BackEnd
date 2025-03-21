@@ -11,7 +11,7 @@ namespace ProjetoPGE.Application.InterfaceServices
 {
     public interface ProcessoInterfaceService
     {
-        Task<ObjectResult> GetProcessos();
+        Task<ObjectResult> GetProcessos(String buscar);
         Task<ObjectResult> GetProcessoById(int id);
         Task<ObjectResult> PostProcesso(ProcessoDTO processoDTO);
         Task<ObjectResult> PutProcesso(ProcessoDTO processoDTO);

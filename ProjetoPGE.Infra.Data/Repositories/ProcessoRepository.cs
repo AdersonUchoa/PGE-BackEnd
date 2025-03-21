@@ -42,9 +42,9 @@ namespace ProjetoPGE.Infra.Data.Repositories
             return processo;
         }
 
-        public async Task<List<Processo>> GetProcessos()
+        public async Task<List<Processo>> GetProcessos(String buscar)
         {
-            return await _context.Processos.ToListAsync();
+            return await _context.Processos.Where(processo => processo.NumeroProcesso.ToString().Contains(buscar)).ToListAsync();
         }
 
         public async Task<Processo> PostProcesso(Processo processo)

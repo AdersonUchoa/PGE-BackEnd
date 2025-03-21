@@ -131,7 +131,7 @@ namespace ProjetoPGE.API.Controllers
         [HttpGet("procuradores")]
         [ProducesResponseType(typeof(ISuccessStatus<List<PessoaDTO>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(IInternalServerErrorStatus<List<PessoaDTO>>), StatusCodes.Status500InternalServerError)]
-        [Authorize(Policy = "AdminOnly")]
+        [Authorize(Policy = "ProcuradorOuAdmin")]
         public async Task<ActionResult> GetProcuradores()
         {
             return await _service.GetProcuradores();
