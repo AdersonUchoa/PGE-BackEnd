@@ -33,25 +33,9 @@ namespace ProjetoPGE.API.Controllers
         [ProducesResponseType(typeof(ISuccessStatus<List<ProcessoDTO>>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(IInternalServerErrorStatus<List<ProcessoDTO>>), StatusCodes.Status500InternalServerError)]
         [Authorize(Policy = "ProcuradorOuAdmin")]
-        public async Task<IActionResult> GetProcessos()
+        public async Task<IActionResult> GetProcessos([FromQuery] String? buscar)
         {
-            return await _service.GetProcessos();
-        }
-
-        /// <summary>
-        /// Segunda rota para buscar todos os processos.
-        /// </summary>
-        /// <remarks>Retorna todos os processos cadastrados no sistema.</remarks>
-        /// <response code="200">Retorna todos os processos com sucesso.</response>
-        /// <response code="500">Erro interno no servidor.</response>
-        /// <returns>Lista de todos os processos</returns>
-        [HttpGet("buscarProcessos")]
-        [ProducesResponseType(typeof(ISuccessStatus<List<ProcessoDTO>>), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(IInternalServerErrorStatus<List<ProcessoDTO>>), StatusCodes.Status500InternalServerError)]
-        [Authorize(Policy = "ProcuradorOuAdmin")]
-        public async Task<IActionResult> BuscarProcessos(String busca)
-        {
-            return await _service.BuscarProcessos(busca);
+            return await _service.GetProcessos(buscar);
         }
 
         /// <summary>

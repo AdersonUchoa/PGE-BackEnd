@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using ProjetoPGE.Domain.InterfaceRepositories;
 using ProjetoPGE.Domain.Models;
 using System;
@@ -43,14 +44,11 @@ namespace ProjetoPGE.Infra.Data.Repositories
             return processo;
         }
 
-        public async Task<List<Processo>> GetProcessos()
+        public async Task<List<Processo>> GetProcessos(String? buscar)
         {
-            return await _context.Processos.ToListAsync();
-        }
-
-        public async Task<List<Processo>> BuscarProcessos(String buscar)
-        {
-            return await _context.Processos.Where(processo => processo.Id.ToString().Contains(buscar)).ToListAsync();
+            return await _context.Processos
+             .Where(processo => processo.NumeroProcesso.ToString().Contains(string.IsNullOrEmpty(buscar) ? "" : buscar))
+             .ToListAsync();
         }
 
         public async Task<Processo> PostProcesso(Processo processo)

@@ -9,8 +9,7 @@ namespace ProjetoPGE.Domain.InterfaceRepositories
 {
     public interface ProcessoInterfaceRepository
     {
-        Task<List<Processo>> GetProcessos();
-        Task<List<Processo>> BuscarProcessos(String busca);
+        Task<List<Processo>> GetProcessos(String? busca);
         Task<Processo?> GetProcessoById(int id);
         Task<Processo> PostProcesso(Processo processo);
         Task<Processo> PutProcesso(Processo processo);

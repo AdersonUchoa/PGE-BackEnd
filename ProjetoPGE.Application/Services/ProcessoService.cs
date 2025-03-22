@@ -85,12 +85,12 @@ namespace ProjetoPGE.Application.Services
             }
         }
 
-        public async Task<ObjectResult> GetProcessos()
+        public async Task<ObjectResult> GetProcessos(String? busca)
         {
             {
                 try
                 {
-                    var processos = await _repository.GetProcessos();
+                    var processos = await _repository.GetProcessos(busca);
                     if (processos == null)
                     {
                         return new NotFoundStatus<List<ProcessoDTO>>(
@@ -114,36 +114,6 @@ namespace ProjetoPGE.Application.Services
                         error: ex.Message
                     );
                 }
-            }
-        }
-
-        public async Task<ObjectResult> BuscarProcessos(String busca)
-        {
-            try
-            {
-                var processos = await _repository.BuscarProcessos(busca);
-                if (processos == null)
-                {
-                    return new NotFoundStatus<List<ProcessoDTO>>(
-                        success: false,
-                        message: "Processos não encontrados!",
-                        error: ""
-                    );
-                }
-                var data = _mapper.Map<List<ProcessoDTO>>(processos);
-                return new SuccessStatus<List<ProcessoDTO>>(
-                    success: true,
-                    message: "Processos encontrados com sucesso!",
-                    body: data
-                );
-            }
-            catch (Exception ex)
-            {
-                return new InternalServerErrorStatus<List<ProcessoDTO>>(
-                    success: false,
-                    message: "Erro ao buscar processos!",
-                    error: ex.Message
-                );
             }
         }
 
