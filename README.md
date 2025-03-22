@@ -1,14 +1,20 @@
 # ProjetoPGE
 
-Usar o comando "npm run serve" no terminal para executar o front-end
+- Framework utilizado: ASP.NET CORE
 
-- Lista de Usuários Para Teste
-1. Admin = admin123 / admin123
-2. Procurador = homemdeferro / homemdeferro
-3. Cliente = fabiorolemberg / fabiorolemberg
+- Padrão utilizado: Clean architecture.
 
-- Abrir a aplicação na porta 8080 (https://localhost:8080)
+- Separação de responsabilidades:
+1. API (Controllers) lida com requisições.
+2. Application contém serviços, DTOs e seus mapeamentos, gerenciamento de
+respostas e lógica de aplicação.
+3. Domain define regras de negócio e contratos de repositórios.
+4. Infra.Data cuida da persistência de dados.
+5. Infra.Ioc gerencia a injeção de dependências.
 
-- Clientes só podem ver as abas de Home, Meus Processos e Perfil.
-- Procuradores podem ver as abas de Home, Processos, Documentos, Prazos e Perfil.
-- Administradores podem ver todas as abas do sistema.
+- Tecnologias utilizadas:
+1. ASP.NET Core para a API.
+2. Entity Framework Core para acesso ao banco de dados.
+3. AutoMapper para conversões entre DTOs e Models.
+4. Identity Framework para autenticação/autorização.
+
