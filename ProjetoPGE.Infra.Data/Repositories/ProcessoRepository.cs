@@ -3,6 +3,7 @@ using ProjetoPGE.Domain.InterfaceRepositories;
 using ProjetoPGE.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,9 +43,14 @@ namespace ProjetoPGE.Infra.Data.Repositories
             return processo;
         }
 
-        public async Task<List<Processo>> GetProcessos(String buscar)
+        public async Task<List<Processo>> GetProcessos()
         {
-            return await _context.Processos.Where(processo => processo.NumeroProcesso.ToString().Contains(buscar)).ToListAsync();
+            return await _context.Processos.ToListAsync();
+        }
+
+        public async Task<List<Processo>> BuscarProcessos(String buscar)
+        {
+            return await _context.Processos.Where(processo => processo.Id.ToString().Contains(buscar)).ToListAsync();
         }
 
         public async Task<Processo> PostProcesso(Processo processo)
@@ -117,7 +123,7 @@ namespace ProjetoPGE.Infra.Data.Repositories
         public async Task<List<Processo>> GetProcessosByProcurador(int idPessoa)
         {
             return await _context.Pessoas
-                .Where(p => p.Id == idPessoa && p.TipoPessoa == "Procurador") // Garante que é um procurador
+            .Where(p => p.Id == idPessoa && p.TipoPessoa == "Procurador") // Garante que é um procurador
                 .SelectMany(p => p.IdProcessos) // Acessa os processos relacionados
                 .ToListAsync();
         }
